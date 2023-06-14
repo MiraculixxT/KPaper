@@ -9,13 +9,7 @@ import org.bukkit.inventory.ItemStack
  * by returning if the material of
  * the result is equal to [Material.AIR].
  */
-val PrepareItemCraftEvent.isCancelled: Boolean
-    get() = this.inventory.result?.type == Material.AIR
+var PrepareItemCraftEvent.isCancelled: Boolean
+    get() = inventory.result?.type == Material.AIR
+    set(value) { if (value) inventory.result = ItemStack(Material.AIR) else inventory.result = inventory.recipe?.result }
 
-/**
- * "Cancels" this event by
- * setting the result to [Material.AIR].
- */
-fun PrepareItemCraftEvent.cancel() {
-    this.inventory.result = ItemStack(Material.AIR)
-}
