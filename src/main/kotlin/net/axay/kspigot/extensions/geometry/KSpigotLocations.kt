@@ -46,3 +46,9 @@ fun SimpleLocation3D.toVector() = Vector(x, y, z)
  */
 fun Location.toSimpleString() = "[$x, $y, $z]"
 fun Location.toSimpleBlockString() = "[$blockX, $blockY, $blockZ]"
+
+/**
+ * Returns the world or null if the world is not loaded
+ * @see Location.isWorldLoaded
+ */
+fun Location.worldOrNull() = takeIf { isWorldLoaded }?.world

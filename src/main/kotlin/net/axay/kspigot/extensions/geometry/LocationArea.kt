@@ -2,7 +2,6 @@
 
 package net.axay.kspigot.extensions.geometry
 
-import net.axay.kspigot.extensions.bukkit.worldOrException
 import org.bukkit.Chunk
 import org.bukkit.Location
 import org.bukkit.World
@@ -10,10 +9,10 @@ import kotlin.math.max
 import kotlin.math.min
 
 class SimpleLocationPair(loc1: Location, loc2: Location) {
-    val world = loc1.worldOrException.let {
-        if (it == loc2.worldOrException) it
+    val world = loc1.worldOrNull().let {
+        if (it == loc2.worldOrNull()) it
         else throw IllegalArgumentException("The given locations worlds are not the same!")
-    }
+    } ?: throw IllegalArgumentException("The given world is not loaded")
 
     val minSimpleLoc = SimpleLocation3D(min(loc1.x, loc2.x), min(loc1.y, loc2.y), min(loc1.z, loc2.z))
     val maxSimpleLoc = SimpleLocation3D(max(loc1.x, loc2.x), max(loc1.y, loc2.y), max(loc1.z, loc2.z))
