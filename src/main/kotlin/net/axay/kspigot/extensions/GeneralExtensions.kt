@@ -21,7 +21,7 @@ val onlinePlayers: Collection<Player> get() = Bukkit.getOnlinePlayers()
  * Shortcut to get a collection of all
  * online players plus the console command sender.
  */
-val onlineSenders: Collection<CommandSender> get() = Bukkit.getOnlinePlayers().plus(Bukkit.getConsoleSender())
+val onlineSenders: Collection<CommandSender> get() = onlinePlayers.plus(Bukkit.getConsoleSender())
 
 /**
  * Shortcut to get the Server.
@@ -40,14 +40,7 @@ val pluginManager get() = Bukkit.getPluginManager()
  * @return the number of recipients
  * @see Bukkit.broadcastMessage
  */
-fun broadcast(msg: String) = Bukkit.getServer().broadcast(text(msg))
-
-/**
- * Broadcasts a message ([msg]) on the server.
- * @return the number of recipients
- * @see Bukkit.broadcastMessage
- */
-fun broadcast(msg: Component) = Bukkit.getServer().broadcast(msg)
+fun broadcast(msg: Component) = server.broadcast(msg)
 
 /**
  * Shortcut to get the ConsoleSender.
