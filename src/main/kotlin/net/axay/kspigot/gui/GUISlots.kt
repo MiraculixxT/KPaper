@@ -2,7 +2,7 @@
 
 package net.axay.kspigot.gui
 
-import net.axay.kspigot.languageextensions.kotlinextensions.MinMaxPair
+import net.axay.kspigot.extensions.kotlin.MinMaxPair
 
 // INVENTORY
 data class InventoryDimensions(val width: Int, val height: Int) {

@@ -1,7 +1,6 @@
 package net.axay.kspigot.main
 
 import net.axay.kspigot.chat.KColors
-import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import org.bukkit.event.EventPriority
 
