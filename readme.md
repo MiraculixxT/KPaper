@@ -67,6 +67,14 @@ An Audience object can contain multiple entities or CommandSender to simply bulk
 With KPaper you can simply add multiple audiences together by using the + operator.
 In addition KPaper adds some utilities like easy titles packet with kotlin durations and more.
 </details>
+<details>
+    <summary>Custom Head Library</summary>
+When working with GUIs/Inventories you often use some kind of heads to display certain actions or just for a better look.
+Instead of looking them up everytime, KPaper now implements a bunch of frequently used heads with a fancy preview. 
+If you have some general heads, simply create a new PR!
+
+![Head Preview](https://i.imgur.com/yO2qt2y.png)
+</details>
 
 
 ### • Removed Features
