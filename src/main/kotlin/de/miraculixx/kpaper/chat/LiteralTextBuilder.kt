@@ -9,7 +9,6 @@ import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack
 
@@ -72,21 +71,6 @@ class LiteralTextBuilder(val internalText: Component) {
         builder: LiteralTextBuilder.() -> Unit = { }
     ) {
         siblingText = siblingText.append(LiteralTextBuilder(component).apply(builder).build())
-    }
-
-    /**
-     * Append the given legacy text to the parent. This
-     * allows you to use legacy color codes (e.g. `§c` for red).
-     * It is **not** recommended to use this.
-     *
-     * @param text the text instance
-     * @param builder the builder which can be used to set the style and add child text components
-     */
-    inline fun legacyText(
-        text: String,
-        builder: LiteralTextBuilder.() -> Unit = { }
-    ) {
-        siblingText = siblingText.append(LiteralTextBuilder(LegacyComponentSerializer.legacy('§').deserialize(text)).apply(builder).build())
     }
 
     /**

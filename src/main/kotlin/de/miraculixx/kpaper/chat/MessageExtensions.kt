@@ -20,12 +20,3 @@ inline fun CommandSender.sendText(
     baseText: String = "",
     crossinline builder: LiteralTextBuilder.() -> Unit = { }
 ) = this.sendMessage(literalText(baseText, builder))
-
-@Suppress("DEPRECATION")
-@Deprecated(
-    "Outdated api, use literalText instead",
-    ReplaceWith("sendText { builder.invoke() }", "net.axay.kspigot.chat.sendText")
-)
-fun CommandSender.sendMessage(builder: KSpigotComponentBuilder.() -> Unit) {
-    this.spigot().sendMessage(*KSpigotComponentBuilder().apply(builder).create())
-}
