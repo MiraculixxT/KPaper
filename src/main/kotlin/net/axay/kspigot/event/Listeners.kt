@@ -1,11 +1,13 @@
 package net.axay.kspigot.event
 
 import net.axay.kspigot.extensions.pluginManager
+import net.axay.kspigot.main.KPaperConfiguration
 import net.axay.kspigot.main.PluginInstance
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 import org.bukkit.event.HandlerList
 import org.bukkit.event.Listener
+
 
 /**
  * Shortcut for unregistering all events in this listener.
@@ -65,9 +67,9 @@ inline fun <reified T : Event> SingleListener<T>.register() {
  * @param onEvent the event callback
  */
 inline fun <reified T : Event> listen(
-    priority: EventPriority = EventPriority.NORMAL,
-    ignoreCancelled: Boolean = false,
-    register: Boolean = true,
+    priority: EventPriority = KPaperConfiguration.Events.eventPriority,
+    ignoreCancelled: Boolean = KPaperConfiguration.Events.ignoreCancelled,
+    register: Boolean = KPaperConfiguration.Events.autoRegistration,
     crossinline onEvent: (event: T) -> Unit,
 ): SingleListener<T> {
     val listener = object : SingleListener<T>(priority, ignoreCancelled) {
