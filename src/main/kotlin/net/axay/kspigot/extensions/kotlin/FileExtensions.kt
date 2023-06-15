@@ -1,4 +1,4 @@
-package net.axay.kspigot.languageextensions.kotlinextensions
+package net.axay.kspigot.extensions.kotlin
 
 import java.io.File
 

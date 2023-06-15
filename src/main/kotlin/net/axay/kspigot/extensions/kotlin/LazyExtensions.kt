@@ -1,4 +1,4 @@
-package net.axay.kspigot.languageextensions.kotlinextensions
+package net.axay.kspigot.extensions.kotlin
 
 inline fun <T, R> Lazy<T>.ifInitialized(block: (T) -> R) = if (isInitialized()) block(value) else null
 
