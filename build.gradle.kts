@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val githubRepo = "jakobkmar/KSpigot"
+val githubRepo = "MiraculixxT/KPaper"
 
-group = "net.axay"
+group = "de.miraculixx"
 version = "1.20.1"
 
 description = "A Kotlin API for Minecraft plugins using the Paper toolchain"
@@ -83,7 +83,8 @@ publishing {
 
                 developers {
                     developer {
-                        name.set("jakobkmar")
+                        name.set("miraculixx")
+                        //TODO possible to add multiple devs? names.add() do not work
                     }
                 }
 
