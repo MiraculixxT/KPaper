@@ -5,7 +5,7 @@ val githubRepo = "jakobkmar/KSpigot"
 group = "net.axay"
 version = "1.20.1"
 
-description = "A Kotlin API for Minecraft plugins using the Spigot or Paper toolchain"
+description = "A Kotlin API for Minecraft plugins using the Paper toolchain"
 
 plugins {
     kotlin("jvm") version "1.8.20"
