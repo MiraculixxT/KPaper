@@ -75,6 +75,13 @@ If you have some general heads, simply create a new PR!
 
 ![Head Preview](https://i.imgur.com/yO2qt2y.png)
 </details>
+<details>
+    <summary>Extend / Improve Awaits</summary>
+Awaiting any type of input for a player with your own callbacks.
+
+- Chat Message - Return the next chat message, now with onTimeout and opt in formatting options
+- Book Input - Return the next chat input, now with onTimeout
+</details>
 
 
 ### • Removed Features
