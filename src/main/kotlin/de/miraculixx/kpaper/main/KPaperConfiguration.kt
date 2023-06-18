@@ -1,6 +1,10 @@
 package de.miraculixx.kpaper.main
 
 import de.miraculixx.kpaper.chat.KColors
+import de.miraculixx.kpaper.extensions.bukkit.cmp
+import de.miraculixx.kpaper.extensions.bukkit.plus
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import org.bukkit.event.EventPriority
 
@@ -36,11 +40,21 @@ object KPaperConfiguration {
         /**
          * Base color used in text components that does not specify an extra color
          */
-        var baseColor: TextColor = _root_ide_package_.de.miraculixx.kpaper.chat.KColors.GRAY
+        var baseColor: TextColor = KColors.GRAY
 
         /**
          * Error color used in text components if something fails
          */
-        var errorColor: TextColor = _root_ide_package_.de.miraculixx.kpaper.chat.KColors.RED
+        var errorColor: TextColor = KColors.RED
+
+        /**
+         * Highlighting color used in text components if something is important
+         */
+        var highlightColor: TextColor = KColors.BLUE
+
+        /**
+         * Text prefix that is displayed before some messages. Change it to your plugin prefix
+         */
+        var prefix = cmp("KPaper", highlightColor) + cmp(" >> ", NamedTextColor.DARK_GRAY)
     }
 }
