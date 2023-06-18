@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package de.miraculixx.kpaper.main
 
 import de.miraculixx.kpaper.chat.KColors
@@ -31,6 +33,12 @@ object KPaperConfiguration {
          * @see EventPriority
          */
         var eventPriority = EventPriority.NORMAL
+
+        fun update(autoRegistration: Boolean, ignoreCancelled: Boolean, eventPriority: EventPriority) {
+            this.autoRegistration = autoRegistration
+            this.ignoreCancelled = ignoreCancelled
+            this.eventPriority = eventPriority
+        }
     }
 
     /**
@@ -56,5 +64,12 @@ object KPaperConfiguration {
          * Text prefix that is displayed before some messages. Change it to your plugin prefix
          */
         var prefix = cmp("KPaper", highlightColor) + cmp(" >> ", NamedTextColor.DARK_GRAY)
+
+        fun update(baseColor: TextColor, errorColor: TextColor, highlightColor: TextColor, prefix: Component) {
+            this.baseColor = baseColor
+            this.errorColor = errorColor
+            this.highlightColor = highlightColor
+            this.prefix = prefix
+        }
     }
 }
