@@ -37,6 +37,9 @@ fun msgList(key: String, input: List<String> = emptyList(), inline: String = "<g
     miniMessage.deserialize("$inline<!i>$it")
     }.ifEmpty { listOf(cmp(inline + key, KPaperConfiguration.Text.errorColor)) }
 
+/**
+ * Get the current used local if the proper syntax (e.g. en_US) is used.
+ */
 fun getLocal(): Locale {
     return try {
         Locale.forLanguageTag(localization?.name) ?: Locale.ENGLISH
@@ -51,13 +54,30 @@ private fun String.replaceInput(input: List<String>): String {
     return msg
 }
 
-class Localization(private val folder: File, active: String, keys: List<Pair<String, InputStream?>>, private val prefix: Component) {
+/**
+ * Create your global localization instance. Creating multiple instances overrides each other and is not recommended.
+ * @param folder The language folder that contains all language files
+ * @param active The language that should be active from the start
+ * @param keys All languages that should be loaded by default (all non-custom languages)
+ * @see msg
+ * @see msgList
+ */
+class Localization(private val folder: File, active: String, keys: List<Pair<String, InputStream?>>) {
     private val languages: MutableList<String> = mutableListOf()
+    private val prefix: Component = KPaperConfiguration.Text.prefix
 
+    /**
+     * All currently loaded language keys. Does not include custom language files that are added in runtime
+     */
     fun getLoadedKeys(): List<String> {
         return languages
     }
 
+    /**
+     * Change the current language to a new one. The entered key must not be a loaded language, if the key can not be found, it will rescan the language folder.
+     * @param key The new language key
+     * @return false if the entered language key can not be found or point to an invalid config
+     */
     fun setLanguage(key: String): Boolean {
         val file = File("${folder.path}/$key.yml")
         if (!file.exists()) {
@@ -74,6 +94,9 @@ class Localization(private val folder: File, active: String, keys: List<Pair<Str
         return true
     }
 
+    /**
+     * Reload all loaded language keys from the language folder
+     */
     private fun checkFiles() {
         languages.clear()
         folder.listFiles()?.forEach {
