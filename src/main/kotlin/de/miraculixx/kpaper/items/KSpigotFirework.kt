@@ -1,6 +1,6 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package de.miraculixx.kpaper.utils
+package de.miraculixx.kpaper.items
 
 import org.bukkit.Color
 import org.bukkit.FireworkEffect

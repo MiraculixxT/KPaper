@@ -1,4 +1,4 @@
-package de.miraculixx.kpaper.utils
+package de.miraculixx.kpaper.extensions.geometry
 
 import com.google.common.base.Enums
 import org.bukkit.Location

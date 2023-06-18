@@ -1,6 +1,5 @@
-package de.miraculixx.kpaper.utils
+package de.miraculixx.kpaper.items
 
-import de.miraculixx.kpaper.items.meta
 import org.bukkit.FireworkEffect
 import org.bukkit.Material
 import org.bukkit.entity.Firework
