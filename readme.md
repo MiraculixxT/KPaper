@@ -106,4 +106,7 @@ Nonetheless, I highly recommend staying at brigadier with a library specialized 
 The library [CommandAPI](https://commandapi.jorel.dev/8.8.0/kotlindsl.html) by Jorel follows a similar syntax and supports kotlin too.
 To learn more about it, visit their [documentation](https://commandapi.jorel.dev/8.8.0/kotlinintro.html)
 </details>
-
+<details>
+    <summary>Structure API</summary>
+In favor of the WorldEdit or FAWE API. Using structures in general is a rare case and does not fit into KPaper
+</details>
