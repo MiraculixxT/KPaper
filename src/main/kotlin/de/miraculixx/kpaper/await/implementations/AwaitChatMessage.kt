@@ -1,4 +1,4 @@
-package de.miraculixx.kpaper.chat.await.implementations
+package de.miraculixx.kpaper.await.implementations
 
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.unregister

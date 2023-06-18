@@ -1,10 +1,10 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "Unused")
 
-package de.miraculixx.kpaper.chat.await
+package de.miraculixx.kpaper.await
 
-import de.miraculixx.kpaper.chat.await.implementations.AwaitChatMessage
-import de.miraculixx.kpaper.chat.await.implementations.PlayerInputBookComprehensive
-import de.miraculixx.kpaper.chat.await.implementations.PlayerInputBookPaged
+import de.miraculixx.kpaper.await.implementations.AwaitChatMessage
+import de.miraculixx.kpaper.await.implementations.PlayerInputBookComprehensive
+import de.miraculixx.kpaper.await.implementations.PlayerInputBookPaged
 import net.kyori.adventure.text.Component
 import org.bukkit.entity.Player
 
@@ -31,8 +31,9 @@ fun Player.awaitChatInput(
  */
 fun Player.awaitBookInputAsString(
     timeoutSeconds: Int = 1 * 60,
-    callback: (String) -> Unit,
-) = PlayerInputBookComprehensive(this, callback, timeoutSeconds).bookItemStack
+    onInput: (String) -> Unit,
+    onTimeout: () -> Unit,
+) = PlayerInputBookComprehensive(this, onInput, onTimeout, timeoutSeconds).bookItemStack
 
 /**
  * Opens a book and uses the text the player inserted
@@ -42,5 +43,6 @@ fun Player.awaitBookInputAsString(
  */
 fun Player.awaitBookInputAsList(
     timeoutSeconds: Int = 1 * 60,
-    callback: (List<Component>) -> Unit,
-) = PlayerInputBookPaged(this, callback, timeoutSeconds).bookItemStack
+    onInput: (List<Component>) -> Unit,
+    onTimeout: () -> Unit
+) = PlayerInputBookPaged(this, onInput, onTimeout, timeoutSeconds).bookItemStack
