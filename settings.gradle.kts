@@ -1,4 +1,4 @@
-rootProject.name = "KSpigot"
+rootProject.name = "KPaper"
 
 pluginManagement {
     repositories {
