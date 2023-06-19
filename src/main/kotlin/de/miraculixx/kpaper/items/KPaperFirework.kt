@@ -6,15 +6,15 @@ import org.bukkit.Color
 import org.bukkit.FireworkEffect
 import org.bukkit.inventory.meta.FireworkMeta
 
-object KSpigotFirework {
-    inline fun buildFireworkMeta(fireworkMeta: FireworkMeta, builder: KSpigotFireworkBuilder.() -> Unit): FireworkMeta {
-        return KSpigotFireworkBuilder().apply(builder).applyTo(fireworkMeta)
+object KPaperFirework {
+    inline fun buildFireworkMeta(fireworkMeta: FireworkMeta, builder: KPaperFireworkBuilder.() -> Unit): FireworkMeta {
+        return KPaperFireworkBuilder().apply(builder).applyTo(fireworkMeta)
     }
 
-    fun FireworkMeta.build(builder: KSpigotFireworkBuilder.() -> Unit) = buildFireworkMeta(this, builder)
+    fun FireworkMeta.build(builder: KPaperFireworkBuilder.() -> Unit) = buildFireworkMeta(this, builder)
 }
 
-class KSpigotFireworkBuilder {
+class KPaperFireworkBuilder {
     val effects = ArrayList<FireworkEffect>()
     var power: Int? = null
 

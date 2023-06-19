@@ -26,7 +26,7 @@ internal object KRunnableHolder : AutoCloseable {
     fun activate(runnable: BukkitRunnable) = runnableEndCallbacks.remove(runnable)?.first?.invoke()
 }
 
-abstract class KSpigotRunnable(
+abstract class KPaperRunnable(
     var counterUp: Long? = null,
     var counterDownToOne: Long? = null,
     var counterDownToZero: Long? = null,
@@ -44,7 +44,7 @@ abstract class KSpigotRunnable(
  * @param endCallback code that should always be executed when the runnable ends
  * @param runnable the runnable which should be executed each repetition
  *
- * @return the [KSpigotRunnable]
+ * @return the [KPaperRunnable]
  */
 fun task(
     sync: Boolean = true,
@@ -53,10 +53,10 @@ fun task(
     howOften: Long? = null,
     safe: Boolean = false,
     endCallback: (() -> Unit)? = null,
-    runnable: ((KSpigotRunnable) -> Unit)? = null,
-): KSpigotRunnable? {
+    runnable: ((KPaperRunnable) -> Unit)? = null,
+): KPaperRunnable? {
     if (howOften != null && howOften == 0L) return null
-    val bukkitRunnable = object : KSpigotRunnable() {
+    val bukkitRunnable = object : KPaperRunnable() {
         private var curCounter = 0L
         override fun run() {
             var ranOut = false

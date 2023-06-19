@@ -1,6 +1,5 @@
 package de.miraculixx.kpaper.main
 
-import de.miraculixx.kpaper.gui.GUIHolder
 import de.miraculixx.kpaper.extensions.kotlin.closeIfInitialized
 import de.miraculixx.kpaper.runnables.KRunnableHolder
 import org.bukkit.plugin.java.JavaPlugin
@@ -8,17 +7,17 @@ import org.bukkit.plugin.java.JavaPlugin
 /**
  * The main plugin instance. Available with public visibility.
  */
-val KSpigotMainInstance: KSpigot get() = PluginInstance
+val KPaperMainInstance: KPaper get() = PluginInstance
 
 /**
  * The main plugin instance. Less complicated name for internal usage.
  */
 @PublishedApi
-internal lateinit var PluginInstance: KSpigot
+internal lateinit var PluginInstance: KPaper
     private set
 
 /**
- * This is the main instance of KSpigot.
+ * This is the main instance of KPaper.
  *
  * This class replaces (and inherits from) the
  * JavaPlugin class. Your main plugin class should
@@ -30,12 +29,10 @@ internal lateinit var PluginInstance: KSpigot
  * - [startup()]  (called second)
  * - [shutdown()] (called in the "end")
  */
-abstract class KSpigot : JavaPlugin() {
+abstract class KPaper : JavaPlugin() {
     // lazy properties
     private val kRunnableHolderProperty = lazy { KRunnableHolder }
-    private val guiHolderProperty = lazy { GUIHolder }
     internal val kRunnableHolder by kRunnableHolderProperty
-    internal val guiHolder by guiHolderProperty
 
     /**
      * Called when the plugin was loaded
@@ -68,6 +65,5 @@ abstract class KSpigot : JavaPlugin() {
         shutdown()
         // avoid unnecessary load of lazy properties
         kRunnableHolderProperty.closeIfInitialized()
-        guiHolderProperty.closeIfInitialized()
     }
 }
