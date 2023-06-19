@@ -82,7 +82,12 @@ Awaiting any type of input for a player with your own callbacks.
 - Chat Message - Return the next chat message, now with onTimeout and opt in formatting options
 - Book Input - Return the next chat input, now with onTimeout
 </details>
+<details>
+    <summary>Scoreboard API</summary>
+Create and update player specific scoreboards easily without the trouble to manage all scoreboards!
 
+You can add new lines, edit existing lines, remove lines out of order, hide/show the scoreboard and remove it completely.
+</details>
 
 ### • Removed Features
 <details>
