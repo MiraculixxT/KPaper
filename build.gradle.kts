@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val githubRepo = "MiraculixxT/KPaper"
 
 group = "de.miraculixx"
-version = "1.20.1"
+version = "1.1.0"
 
 description = "A Kotlin API for Minecraft plugins using the Paper toolchain"
 
@@ -62,9 +62,10 @@ signing {
 
 publishing {
     repositories {
-        maven("https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+        maven {
             name = "ossrh"
             credentials(PasswordCredentials::class)
+            setUrl("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2")
         }
     }
 
@@ -84,7 +85,9 @@ publishing {
                 developers {
                     developer {
                         name.set("miraculixx")
-                        //TODO possible to add multiple devs? names.add() do not work
+                    }
+                    developer {
+                        name.set("jakobkmar")
                     }
                 }
 
@@ -99,7 +102,7 @@ publishing {
 
                 scm {
                     connection.set("scm:git:git://github.com/${githubRepo}.git")
-                    url.set("https://github.com/${githubRepo}/tree/main")
+                    url.set("https://github.com/${githubRepo}")
                 }
             }
         }
