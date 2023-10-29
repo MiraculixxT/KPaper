@@ -115,3 +115,8 @@ To learn more about it, visit their [documentation](https://commandapi.jorel.dev
     <summary>Structure API</summary>
 In favor of the WorldEdit or FAWE API. Using structures in general is a rare case and does not fit into KPaper
 </details>
+<details>
+    <summary>GUI API</summary>
+In favor of per GUI logic instead of per item logic. Maybe i add a new one soon that handles GUIs by instance.
+</details>
+
