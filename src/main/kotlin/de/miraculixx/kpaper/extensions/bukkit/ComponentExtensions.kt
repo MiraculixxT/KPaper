@@ -23,7 +23,7 @@ fun String.toComponent(): Component = Component.text(this)
  *
  * Note: Render [TranslatableComponent]s before using this
  */
-fun Component.toLegacyString(): String = LegacyComponentSerializer.legacyAmpersand().serialize(this)
+fun Component.toLegacyString(): String = LegacyComponentSerializer.legacy('§').serialize(this)
 
 /**
  * Returns a [String] from a [Component]

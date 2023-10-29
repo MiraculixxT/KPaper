@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val githubRepo = "MiraculixxT/KPaper"
 
 group = "de.miraculixx"
-version = "1.1.0"
+version = "1.1.1"
 
 description = "A Kotlin API for Minecraft plugins using the Paper toolchain"
 
@@ -25,7 +25,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
