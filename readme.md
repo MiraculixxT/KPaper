@@ -15,14 +15,14 @@ Gradle Kts:
 
 ```kt
 dependencies {
-    implementation("de.miraculixx:kpaper:1.1.0")
+    implementation("de.miraculixx:kpaper:1.1.2")
 }
 ```
 And don't forget to add it to your libraries inside the ``plugin.yml``
 ````yml
 [...]
 libraries:
-  - "de.miraculixx:kpaper:1.1.0"
+  - "de.miraculixx:kpaper:1.1.2"
 ````
 
 ## Changes - KPaper to KSpigot 
