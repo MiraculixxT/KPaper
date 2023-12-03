@@ -10,22 +10,25 @@ import java.io.File
 import java.io.InputStream
 import java.util.Locale
 
-private var localization: Config? = null
+private var localization: MutableMap<String, Config> = mutableMapOf()
 private var miniMessage = MiniMessage.miniMessage()
+private var defaultLocale = "en_US"
 
 /**
  * Get a translation for the given key. If no translation were found the key will be returned in red. All inputs will be deserialized with miniMessages
  * @param key Localization Key
  * @param input Input variables. <input-i>
  */
-fun msg(key: String, input: List<String> = emptyList()) = miniMessage.deserialize("<!i>" + (localization?.get<String>(key)?.replaceInput(input) ?: "<red>$key"))
+fun msg(key: String, input: List<String> = emptyList(), locale: String = defaultLocale)
+    = miniMessage.deserialize("<!i>" + (localization[locale]?.get<String>(key)?.replaceInput(input) ?: "<red>$key"))
 
 /**
  * Get a translation for the given key. If no translation were found the key will be returned instead.
  * @param key Localization Key
  * @param input Input variables. <input-i>
  */
-fun msgString(key: String, input: List<String> = emptyList()) = localization?.get<String>(key)?.replaceInput(input) ?: key
+fun msgString(key: String, input: List<String> = emptyList(), locale: String = defaultLocale)
+    = localization[locale]?.get<String>(key)?.replaceInput(input) ?: key
 
 /**
  * Get a translation for the given key. If no translation were found the key will be returned in red.
@@ -33,8 +36,9 @@ fun msgString(key: String, input: List<String> = emptyList()) = localization?.ge
  * @param input Input variables. <input-i>
  * @param inline Inline string before every line (useful for listing)
  */
-fun msgList(key: String, input: List<String> = emptyList(), inline: String = "<grey>   ") = msgString(key, input).split("<br>").map {
-    miniMessage.deserialize("$inline<!i>$it")
+fun msgList(key: String, input: List<String> = emptyList(), inline: String = "<grey>   ", locale: String = defaultLocale)
+    = msgString(key, input, locale).split("<br>").map {
+        miniMessage.deserialize("$inline<!i>$it")
     }.ifEmpty { listOf(cmp(inline + key, KPaperConfiguration.Text.errorColor)) }
 
 /**
@@ -42,7 +46,7 @@ fun msgList(key: String, input: List<String> = emptyList(), inline: String = "<g
  */
 fun getLocal(): Locale {
     return try {
-        Locale.forLanguageTag(localization?.name) ?: Locale.ENGLISH
+        Locale.forLanguageTag(defaultLocale) ?: Locale.ENGLISH
     } catch (_: Exception) {
         Locale.ENGLISH
     }
@@ -79,6 +83,28 @@ class Localization(private val folder: File, active: String, keys: List<Pair<Str
      * @return false if the entered language key can not be found or point to an invalid config
      */
     fun setLanguage(key: String): Boolean {
+        return if (localization[key] != null || checkFile(key)) {
+            defaultLocale = key
+            console.sendMessage(prefix + cmp("Changed default language to ") + cmp(key, KPaperConfiguration.Text.highlightColor))
+            true
+        } else false
+    }
+
+    /**
+     * Reload all loaded language keys from the language folder
+     */
+    private fun checkFiles() {
+        languages.clear()
+        folder.listFiles()?.forEach {
+            val key = it.nameWithoutExtension
+            if (checkFile(key)) {
+                languages.add(key)
+                console.sendMessage(prefix + cmp("Loaded language ") + cmp(key, KPaperConfiguration.Text.highlightColor))
+            }
+        }
+    }
+
+    private fun checkFile(key: String): Boolean {
         val file = File("${folder.path}/$key.yml")
         if (!file.exists()) {
             console.sendMessage(prefix + cmp("LANG - $key file not exist"))
@@ -89,19 +115,8 @@ class Localization(private val folder: File, active: String, keys: List<Pair<Str
             console.sendMessage(prefix + cmp("LANG - $key file is not a valid language config"))
             return false
         }
-        console.sendMessage(prefix + cmp("Changed language to ") + cmp(key, KPaperConfiguration.Text.highlightColor))
-        localization = config
+        localization[key] = config
         return true
-    }
-
-    /**
-     * Reload all loaded language keys from the language folder
-     */
-    private fun checkFiles() {
-        languages.clear()
-        folder.listFiles()?.forEach {
-            languages.add(it.nameWithoutExtension)
-        }
     }
 
     init {
