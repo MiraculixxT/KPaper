@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val githubRepo = "MiraculixxT/KPaper"
 
 group = "de.miraculixx"
-version = "1.1.2"
+version = "1.2.0"
 
 description = "A Kotlin API for Minecraft plugins using the Paper toolchain"
 

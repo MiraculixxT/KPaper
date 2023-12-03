@@ -4,14 +4,13 @@ import de.miraculixx.kpaper.extensions.bukkit.cmp
 import de.miraculixx.kpaper.extensions.bukkit.plus
 import de.miraculixx.kpaper.extensions.console
 import de.miraculixx.kpaper.main.KPaperConfiguration
+import de.miraculixx.kpaper.main.KPaperConfiguration.Text.miniMessageParser
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.minimessage.MiniMessage
 import java.io.File
 import java.io.InputStream
 import java.util.Locale
 
 private var localization: MutableMap<String, Config> = mutableMapOf()
-private var miniMessage = MiniMessage.miniMessage()
 private var defaultLocale = "en_US"
 
 /**
@@ -20,7 +19,7 @@ private var defaultLocale = "en_US"
  * @param input Input variables. <input-i>
  */
 fun msg(key: String, input: List<String> = emptyList(), locale: String = defaultLocale)
-    = miniMessage.deserialize("<!i>" + (localization[locale]?.get<String>(key)?.replaceInput(input) ?: "<red>$key"))
+    = miniMessageParser.deserialize("<!i>" + (localization[locale]?.get<String>(key)?.replaceInput(input) ?: "<red>$key"))
 
 /**
  * Get a translation for the given key. If no translation were found the key will be returned instead.
@@ -38,7 +37,7 @@ fun msgString(key: String, input: List<String> = emptyList(), locale: String = d
  */
 fun msgList(key: String, input: List<String> = emptyList(), inline: String = "<grey>   ", locale: String = defaultLocale)
     = msgString(key, input, locale).split("<br>").map {
-        miniMessage.deserialize("$inline<!i>$it")
+        miniMessageParser.deserialize("$inline<!i>$it")
     }.ifEmpty { listOf(cmp(inline + key, KPaperConfiguration.Text.errorColor)) }
 
 /**

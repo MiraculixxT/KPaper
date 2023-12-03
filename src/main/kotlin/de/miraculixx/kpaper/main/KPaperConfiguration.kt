@@ -8,6 +8,7 @@ import de.miraculixx.kpaper.extensions.bukkit.plus
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.event.EventPriority
 
 /**
@@ -64,6 +65,11 @@ object KPaperConfiguration {
          * Text prefix that is displayed before some messages. Change it to your plugin prefix
          */
         var prefix = cmp("KPaper", highlightColor) + cmp(" >> ", NamedTextColor.DARK_GRAY)
+
+        /**
+         * MiniMessage parser used to parse translations. Define your own for custom tags
+         */
+        var miniMessageParser = MiniMessage.miniMessage()
 
         fun update(baseColor: TextColor, errorColor: TextColor, highlightColor: TextColor, prefix: Component) {
             this.baseColor = baseColor
