@@ -2,12 +2,12 @@ package de.miraculixx.kpaper.await.implementations
 
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.unregister
-import de.miraculixx.kpaper.extensions.bukkit.plainText
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
 import de.miraculixx.kpaper.main.PluginInstance
 import de.miraculixx.kpaper.runnables.taskRunLater
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
@@ -22,7 +22,7 @@ internal class PlayerInputBookComprehensive(
     timeoutSeconds: Int,
 ) : PlayerInputBook<String>(player, onInput, onTimeout, timeoutSeconds) {
     override fun loadBookContent(bookMeta: BookMeta) = buildString {
-        bookMeta.pages().forEach { page -> append(page.plainText()) }
+        bookMeta.pages().forEach { page -> append(PlainTextComponentSerializer.plainText().serialize(page)) }
     }
 }
 

@@ -2,7 +2,6 @@
 
 package de.miraculixx.kpaper.scoreboard
 
-import de.miraculixx.kpaper.extensions.bukkit.toLegacyString
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
@@ -74,24 +73,11 @@ class PlayerScoreboard(player: Player, displayName: Component) {
     /**
      * Add a new line to the scoreboard. A scoreboard can only display 15 lines at the same time!
      */
-    fun addLine(name: Component) {
-        addLine(name.toLegacyString())
-    }
-
-    /**
-     * Add a new line to the scoreboard. A scoreboard can only display 15 lines at the same time!
-     */
     fun addLine(name: String) {
         val id = lines.size
         objective.getScore(name).score = 15 - id
         lines[id] = name
     }
-
-    /**
-     * Edit an existing line with new content
-     * @return false if the line does not exist
-     */
-    fun editLine(line: Int, name: Component) = editLine(line, name.toLegacyString())
 
     /**
      * Edit an existing line with new content

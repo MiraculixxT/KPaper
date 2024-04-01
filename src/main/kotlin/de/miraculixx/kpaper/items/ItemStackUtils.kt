@@ -2,7 +2,6 @@
 
 package de.miraculixx.kpaper.items
 
-import de.miraculixx.kpaper.extensions.bukkit.plus
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
 
@@ -16,7 +15,7 @@ fun String.toLoreList(linePrefix: String = "<!i>", lineLength: Int = 40): List<C
     val lineBuilder = StringBuilder()
     val prefix = MiniMessage.miniMessage().deserialize(linePrefix)
     fun submitLine() {
-        loreList += prefix + Component.text(lineBuilder.toString())
+        loreList += prefix.append(Component.text(lineBuilder.toString()))
         lineBuilder.clear()
     }
 

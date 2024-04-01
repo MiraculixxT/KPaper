@@ -1,4 +1,4 @@
-# KPaper
+# KPaper Light
 
 KPaper is a reimagination from [KSpigot](https://github.com/jakobkmar/KSpigot) focussing on full version compatibility, 
 less specific and unsafe features and with a focus on the [Adventure](https://docs.advntr.dev/getting-started.html) library inbuilt in PaperMC.
@@ -9,20 +9,20 @@ the cost of version independence, I highly recommend taking a look at Silk-Paper
 
 ## Dependency
 
-KPaper is available on Maven Central.
+KPaper Light is available on Maven Central.
 
 Gradle Kts:
 
 ```kt
 dependencies {
-    implementation("de.miraculixx:kpaper:1.1.2")
+    implementation("de.miraculixx:kpaper-light:1.2.0")
 }
 ```
 And don't forget to add it to your libraries inside the ``plugin.yml``
 ````yml
 [...]
 libraries:
-  - "de.miraculixx:kpaper:1.1.2"
+  - "de.miraculixx:kpaper-light:1.2.0"
 ````
 
 ## Changes - KPaper to KSpigot 

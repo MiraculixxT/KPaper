@@ -2,9 +2,6 @@
 
 package de.miraculixx.kpaper.main
 
-import de.miraculixx.kpaper.chat.KColors
-import de.miraculixx.kpaper.extensions.bukkit.cmp
-import de.miraculixx.kpaper.extensions.bukkit.plus
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
@@ -47,33 +44,21 @@ object KPaperConfiguration {
      */
     object Text {
         /**
-         * Base color used in text components that does not specify an extra color
-         */
-        var baseColor: TextColor = KColors.GRAY
-
-        /**
-         * Error color used in text components if something fails
-         */
-        var errorColor: TextColor = KColors.RED
-
-        /**
          * Highlighting color used in text components if something is important
          */
-        var highlightColor: TextColor = KColors.BLUE
+        var highlightColor: TextColor = NamedTextColor.BLUE
 
         /**
          * Text prefix that is displayed before some messages. Change it to your plugin prefix
          */
-        var prefix = cmp("KPaper", highlightColor) + cmp(" >> ", NamedTextColor.DARK_GRAY)
+        var prefix: Component = Component.text("KPaper", highlightColor).append(Component.text(" >> ", NamedTextColor.DARK_GRAY))
 
         /**
          * MiniMessage parser used to parse translations. Define your own for custom tags
          */
         var miniMessageParser = MiniMessage.miniMessage()
 
-        fun update(baseColor: TextColor, errorColor: TextColor, highlightColor: TextColor, prefix: Component) {
-            this.baseColor = baseColor
-            this.errorColor = errorColor
+        fun update(highlightColor: TextColor, prefix: Component) {
             this.highlightColor = highlightColor
             this.prefix = prefix
         }
