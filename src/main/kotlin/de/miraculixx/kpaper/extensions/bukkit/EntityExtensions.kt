@@ -129,7 +129,7 @@ fun Player.give(vararg itemStacks: ItemStack) = inventory.addItem(*itemStacks)
 /**
  * @return The players' locale without any extensions or specification, just the root language.
  */
-fun Player.language(): Locale = locale().stripExtensions()
+fun Player.language() = Locale(locale().language, "", "")
 
 fun CommandSender.language(): Locale = if (this is Player) language() else Locale.ENGLISH
 
@@ -137,8 +137,8 @@ fun CommandSender.language(): Locale = if (this is Player) language() else Local
  * Adds all equipment locks to every equipment slot
  */
 fun ArmorStand.fullLock() {
-    for (slot in EquipmentSlot.values()) {
-        for (lock in ArmorStand.LockType.values()) {
+    for (slot in EquipmentSlot.entries) {
+        for (lock in ArmorStand.LockType.entries) {
             addEquipmentLock(slot, lock)
         }
     }
@@ -148,8 +148,8 @@ fun ArmorStand.fullLock() {
  * Removes all equipment locks from every equipment slot
  */
 fun ArmorStand.fullUnlock() {
-    for (slot in EquipmentSlot.values()) {
-        for (lock in ArmorStand.LockType.values()) {
+    for (slot in EquipmentSlot.entries) {
+        for (lock in ArmorStand.LockType.entries) {
             removeEquipmentLock(slot, lock)
         }
     }
