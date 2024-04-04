@@ -7,9 +7,11 @@ import de.miraculixx.kpaper.main.PluginInstance
 import de.miraculixx.kpaper.pluginmessages.PluginMessageConnect
 import org.bukkit.Material
 import org.bukkit.attribute.Attribute
+import org.bukkit.command.CommandSender
 import org.bukkit.entity.*
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
+import java.util.*
 
 /**
  * Checks if the entities' head is in water.
@@ -123,6 +125,13 @@ fun Player.sendToServer(servername: String) {
  * @return The items that did not fit into the player's inventory.
  */
 fun Player.give(vararg itemStacks: ItemStack) = inventory.addItem(*itemStacks)
+
+/**
+ * @return The players' locale without any extensions or specification, just the root language.
+ */
+fun Player.language(): Locale = locale().stripExtensions()
+
+fun CommandSender.language(): Locale = if (this is Player) language() else Locale.ENGLISH
 
 /**
  * Adds all equipment locks to every equipment slot

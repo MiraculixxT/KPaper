@@ -22,13 +22,3 @@ val PlayerInteractEntityEvent.interactItem: ItemStack?
             EquipmentSlot.CHEST, EquipmentSlot.FEET, EquipmentSlot.HEAD, EquipmentSlot.LEGS -> null
         }
     }
-
-/**
- * @return True, if the action was a left mouse button click.
- */
-val Action.isLeftClick get() = this == Action.LEFT_CLICK_BLOCK || this == Action.LEFT_CLICK_AIR
-
-/**
- * @return True, if the action was a right mouse button click.
- */
-val Action.isRightClick get() = this == Action.RIGHT_CLICK_BLOCK || this == Action.RIGHT_CLICK_AIR

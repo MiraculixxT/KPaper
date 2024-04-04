@@ -3,13 +3,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 val githubRepo = "MiraculixxT/KPaper"
 
 group = "de.miraculixx"
-version = "1.2.0"
+version = "1.2.1"
 
 description = "A Kotlin API for Minecraft plugins using the Paper toolchain"
 
 plugins {
-    kotlin("jvm") version "1.8.22"
-    kotlin("plugin.serialization") version "1.8.22"
+    kotlin("jvm") version "1.9.23"
+    kotlin("plugin.serialization") version "1.9.23"
 
     `java-library`
     `maven-publish`
@@ -22,6 +22,7 @@ plugins {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -30,6 +31,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.7.1")
+    implementation("de.miraculixx:mc-commons:1.0.1")
 }
 
 tasks {
@@ -77,6 +79,7 @@ publishing {
             this.groupId = project.group.toString()
             this.artifactId = project.name.lowercase()
             this.version = project.version.toString()
+            println("$groupId:$artifactId:$version")
 
             pom {
                 name.set(project.name)
