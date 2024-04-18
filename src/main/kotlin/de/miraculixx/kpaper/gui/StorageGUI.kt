@@ -175,7 +175,7 @@ class StorageGUI(
                         listOf(
                             emptyComponent(),
                             cmp("Filter", cHighlight, underlined = true),
-                            cmp("∙ ${filter ?: msgString("common.none")}"),
+                            cmp("∙ ${filter ?: locale.msgString("common.none")}"),
                             emptyComponent(),
                             cmp("Click ", cHighlight) + cmp("≫ Change Filter")
                         )

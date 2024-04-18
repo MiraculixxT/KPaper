@@ -42,12 +42,12 @@ class ScrollGUI(
     private val arrowGreenR = InventoryUtils.getCustomItem("arrowRight", 9002, KHeads.ARROW_RIGHT_GREEN, locale)
     private val pageIndicator = itemStack(Material.KNOWLEDGE_BOOK) {
         meta {
-            lore(msgList("items.general.pageIndicator.l", inline = "<grey>"))
+            lore(locale.msgList("items.general.pageIndicator.l", inline = "<grey>"))
             customModel = 9003
         }
     }
-    private val activated = cmp(msgString("common.boolTrue"), cSuccess)
-    private val deactivated = cmp(msgString("common.boolFalse"), cError)
+    private val activated = cmp(locale.msgString("common.boolTrue"), cSuccess)
+    private val deactivated = cmp(locale.msgString("common.boolFalse"), cError)
     override val defaultClickAction: ((InventoryClickEvent) -> Unit) = action@{
         val item = it.currentItem
         val player = it.whoClicked

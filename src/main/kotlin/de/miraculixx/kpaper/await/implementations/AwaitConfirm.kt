@@ -2,6 +2,7 @@ package de.miraculixx.kpaper.await.implementations
 
 import de.miraculixx.kpaper.event.listen
 import de.miraculixx.kpaper.event.unregister
+import de.miraculixx.kpaper.extensions.bukkit.language
 import de.miraculixx.kpaper.gui.GUIEvent
 import de.miraculixx.kpaper.gui.data.CustomInventory
 import de.miraculixx.kpaper.gui.data.InventoryManager
@@ -22,13 +23,15 @@ import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.SkullMeta
+import java.util.Locale
 
 class AwaitConfirm(source: Player, onConfirm: () -> Unit, onCancel: () -> Unit) {
     private val gui = InventoryManager.inventoryBuilder("${source.uniqueId}-CONFIRM") {
-        title = cmp("• ") + cmp(msgString("common.confirm"), NamedTextColor.DARK_GREEN)
+        val locale = source.language()
+        title = cmp("• ") + cmp(locale.msgString("common.confirm"), NamedTextColor.DARK_GREEN)
         size = 3
         player = source
-        itemProvider = InternalItemProvider()
+        itemProvider = InternalItemProvider(locale)
         clickAction = InternalClickProvider(source, onConfirm, onCancel, this@AwaitConfirm).run
     }
 
@@ -46,20 +49,20 @@ class AwaitConfirm(source: Player, onConfirm: () -> Unit, onCancel: () -> Unit) 
         onClose.unregister()
     }
 
-    private class InternalItemProvider : ItemProvider {
+    private class InternalItemProvider(private val locale: Locale) : ItemProvider {
         override fun getSlotMap(): Map<Int, ItemStack> {
             return mapOf(
                 12 to itemStack(Material.PLAYER_HEAD) {
                     meta<SkullMeta> {
                         customModel = 1
-                        name = cmp(msgString("common.confirm"), cSuccess)
+                        name = cmp(locale.msgString("common.confirm"), cSuccess)
                         skullTexture(KHeads.CHECKMARK_GREEN)
                     }
                 },
                 14 to itemStack(Material.PLAYER_HEAD) {
                     meta<SkullMeta> {
                         customModel = 2
-                        name = cmp(msgString("common.cancel"), cError)
+                        name = cmp(locale.msgString("common.cancel"), cError)
                         skullTexture(KHeads.X_RED)
                     }
                 }

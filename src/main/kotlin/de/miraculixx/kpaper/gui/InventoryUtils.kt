@@ -1,5 +1,7 @@
 package de.miraculixx.kpaper.gui
 
+import de.miraculixx.kpaper.gui.data.CustomInventory
+import de.miraculixx.kpaper.gui.items.skullTexture
 import de.miraculixx.kpaper.items.customModel
 import de.miraculixx.kpaper.items.itemStack
 import de.miraculixx.kpaper.items.meta
@@ -9,8 +11,6 @@ import de.miraculixx.mcommons.extensions.soundEnable
 import de.miraculixx.mcommons.text.emptyComponent
 import de.miraculixx.mcommons.text.msg
 import de.miraculixx.mcommons.text.msgList
-import de.miraculixx.kpaper.gui.data.CustomInventory
-import de.miraculixx.kpaper.gui.items.skullTexture
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.Sound
@@ -31,8 +31,8 @@ object InventoryUtils {
         return itemStack(Material.PLAYER_HEAD) {
             meta<SkullMeta> {
                 skullTexture(texture)
-                displayName(msg("items.general.$key.n"))
-                lore(msgList("items.general.$key.l", inline = "<grey>"))
+                displayName(locale.msg("items.general.$key.n"))
+                lore(locale.msgList("items.general.$key.l", inline = "<grey>"))
                 customModel = id
             }
         }

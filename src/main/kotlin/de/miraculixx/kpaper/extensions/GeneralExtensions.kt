@@ -2,7 +2,9 @@
 
 package de.miraculixx.kpaper.extensions
 
+import de.miraculixx.kpaper.extensions.bukkit.msg
 import de.miraculixx.kpaper.main.PluginInstance
+import de.miraculixx.mcommons.text.plus
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.Component.text
 import org.bukkit.Bukkit
@@ -41,6 +43,16 @@ val pluginManager get() = Bukkit.getPluginManager()
  * @see Bukkit.broadcastMessage
  */
 fun broadcast(msg: Component) = server.broadcast(msg)
+
+/**
+ * Broadcast a translated message to all online players.
+ * Each player will receive the message with their locale.
+ */
+fun broadcast(prefix: Component, key: String, variables: List<String> = emptyList()) {
+    onlinePlayers.forEach {
+        it.sendMessage(prefix + it.msg(key, variables))
+    }
+}
 
 /**
  * Shortcut to get the ConsoleSender.

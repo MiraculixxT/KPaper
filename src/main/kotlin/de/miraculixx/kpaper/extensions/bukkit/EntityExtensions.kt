@@ -5,6 +5,8 @@ package de.miraculixx.kpaper.extensions.bukkit
 import de.miraculixx.kpaper.extensions.onlinePlayers
 import de.miraculixx.kpaper.main.PluginInstance
 import de.miraculixx.kpaper.pluginmessages.PluginMessageConnect
+import de.miraculixx.mcommons.text.msg
+import de.miraculixx.mcommons.text.msgString
 import org.bukkit.Material
 import org.bukkit.attribute.Attribute
 import org.bukkit.command.CommandSender
@@ -130,8 +132,13 @@ fun Player.give(vararg itemStacks: ItemStack) = inventory.addItem(*itemStacks)
  * @return The players' locale without any extensions or specification, just the root language.
  */
 fun Player.language() = Locale(locale().language, "", "")
+fun Player.msg(key: String, list: List<String> = emptyList()) = language().msg(key, list)
+fun Player.msgString(key: String, list: List<String> = emptyList()) = language().msgString(key, list)
 
 fun CommandSender.language(): Locale = if (this is Player) language() else Locale.ENGLISH
+fun CommandSender.msg(key: String, list: List<String> = emptyList()) = language().msg(key, list)
+fun CommandSender.msgString(key: String, list: List<String> = emptyList()) = language().msgString(key, list)
+
 
 /**
  * Adds all equipment locks to every equipment slot
